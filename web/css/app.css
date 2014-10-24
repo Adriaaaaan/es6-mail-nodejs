@@ -1,2 +1,64 @@
 /* app css stylesheet */
 
+html, body {
+	height:100%;
+}
+
+.row {
+	word-wrap: normal;
+}
+.row:nth-child(even){
+	background: transparent;
+}
+
+.row:nth-child(odd):not(.noStripe) {
+	background: rgba(182, 180, 180, 0.08);
+}
+
+.row[data-focus="1"] {
+	outline:dotted 3px silver;
+}
+
+.row.focused {
+	outline:dotted 3px silver;
+}
+
+.row:hover {
+	background: rgba(124, 124, 124, 0.12);
+}
+
+.mainHeader {
+	height:64px;
+	background: rgb(219, 41, 41);
+	color: white;
+	font-size: 2em;
+	line-height: 64px;
+	padding-left: 16px;
+}
+
+
+
+.mainContent {
+	height: calc(100% - 64px);
+}
+
+.filterPanel {
+	float:left;
+	width:200px;
+	height:100%;
+	background: rgb(242, 242, 242);
+}
+
+.resultsPanel {
+	float:left;
+	max-width:768px;
+	width:100%;
+	overflow-y:auto;
+	overflow-x:hidden;
+	height:100%;
+}
+
+.detailPanel {
+	height:100%;
+	overflow:hidden;
+}
