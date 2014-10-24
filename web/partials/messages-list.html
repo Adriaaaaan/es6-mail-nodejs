@@ -1,0 +1,5 @@
+<button ng-click="getMessages()">Get messages</button>
+<ul>
+	{{messages.length}}
+	<li ng-repeat="message in messages">{{message.threadId}}</li>
+</ul>
