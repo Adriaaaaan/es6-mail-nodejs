@@ -1,12 +1,12 @@
-<div class="messageListItem">
+<div class="messageListItem" ng-click="focusRow(message)">
 	<div class='selectorColumn'>
 		<div class="selectionCircle" >&nbsp;</div>
 		<img ng-src="{{message.avatar}}" ng-click="toggleSelectRow()" class="selectionTickBox avatarIcon letterAvatar colourAvatar"/>
-		<div ng-click="toggleSelectRow()" title="Select or unselect this row" class="iconBadge selectionTickBox">
+		<div ng-click="toggleSelectRow(message)" title="Select or unselect this row" class="iconBadge selectionTickBox">
 			<div class="iconButtonImg icn white_accept"></div>
 		</div>
 	</div>
-		<div class="tableCellBody" style='overflow:hidden;'>
+	<div class="tableCellBody" style='overflow:hidden;'>
 		<div class="tableCell tableCellPrimaryField">
 			{{message.subject}}
 		</div>

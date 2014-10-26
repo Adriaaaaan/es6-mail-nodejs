@@ -8,15 +8,16 @@
 	</head>
 	<body> 
 			<header class="mainHeader">
-				Angular Mail 
+				<span class="mainHeaderTitle">Angular Mail</span> <input  class="mainSearchBox" ng-model="searchQuery" type="search"
+        placeholder="Search by" autofocus/>
 			</header>
 			<div class="mainContent" ng-controller='MessageListCtrl'>
 				<div class="resultsPanel">
-					<div ng-repeat="message in messages" class="row">
-						<messages-list-item  message="message" ></messages-list-item>
+					<div ng-repeat="message in messages | filter:searchQuery" class="row">
+						<messages-list-item  message="message" ng-class="{selected: message.id === selectedMessage.id}"  ng-click="selectMessage(message)"></messages-list-item>
 					</div>
 				</div>
-				<div class="detailPanel"  ng-view></div
+				<div class="detailPanel"  ng-view></div>
 				
 			</div>
 		
