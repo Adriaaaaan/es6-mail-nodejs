@@ -126,7 +126,7 @@ public class Backend {
 								.setFromAddress("anna@gmail.com")
 								.setSubject("Do you want to be a millionaire???")
 								.setBody(Messages.message10)
-								.setAvatar("img/person4.jpg")
+								.setAvatar("img/person4.JPG")
 								.setReceived(formatter.parseDateTime("12/03/2014 20:52").toCalendar(Locale.UK))
 						.createMessage()
 				));
