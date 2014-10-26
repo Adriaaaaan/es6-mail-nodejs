@@ -18,22 +18,13 @@
 			<div class="mainContent" ng-controller='MessageListCtrl'>
 				<div class="resultsPanel">
 					<div ng-repeat="message in messages | filter:searchQuery" ng-class="{selected: message.id === selectedMessage.id}"  class="row">
-						<messages-list-item  message="message"  ng-click="selectMessage(message)"></messages-list-item>
+						<a href="#/message/{{message.id}}">
+							<messages-list-item  message="message"  ng-click="selectMessage(message)"></messages-list-item>
+						</a>
 					</div>
 				</div>
 				<div class="detailPanel" >
-					<div ng-if="hasSelectedMessage()">
-						{{selectedMessage.subject}}
-					</div>
-					<div ng-if="!hasSelectedMessage()">
-						<div class="jumbotron" style="padding-top: 0px;">
-							<h1>Welcome to AngularMail</h1>
-							<ul class="bulletList">
-								<li>Search through your messages</li>
-								<li>Select any row to see the full message</li>
-							</ul>
-					</div>
-					</div>
+					<div ng-view></div>
 				</div>
 				
 			</div>

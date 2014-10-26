@@ -111,6 +111,7 @@ box-shadow:         0px 1px 16px 0px rgba(50, 50, 50, 0.75);
 .detailPanel {
 	height:100%;
 	overflow:hidden;
+	background: rgb(237, 237, 237);
 }
 
 .selectorColumn {
@@ -273,6 +274,7 @@ box-shadow:         0px 1px 16px 0px rgba(50, 50, 50, 0.75);
 	display: table-cell;
 	vertical-align: middle;
 	height: 80px;
+	text-decoration: none;
 }
 
 .tableCell.tableCellPrimaryField {
@@ -301,4 +303,28 @@ box-shadow:         0px 1px 16px 0px rgba(50, 50, 50, 0.75);
 
 .row.selected {
 	background: rgba(30, 93, 178, 0.27);
+}
+
+.message-card {
+    max-width: 768px;
+    margin:  0 auto;
+    margin-top: 5%;
+    box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
+
+}
+
+.message-header {
+    background: rgb(79, 129, 207);
+    color: white;
+    height: 48px;
+    font-size: 1.8em;
+    line-height: 32px;
+    padding: 8px;
+
+}
+
+.message-body {
+	color: rgb(39, 39, 39);
+	background: white;
+	padding: 16px;
 }

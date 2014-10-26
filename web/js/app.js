@@ -9,7 +9,7 @@ var app = angular.module('app', [
   'appDirectives']);
 
 app.config(['$routeProvider',function($routeProvider){
-	$routeProvider.when('/message/:messagesId',{
+	$routeProvider.when('/message/:id',{
 		templateUrl:'partials/messages-view.html',
 		controller: 'MessageViewCtrl'
 	}).when('/',{
