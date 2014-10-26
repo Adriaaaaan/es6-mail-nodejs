@@ -5,19 +5,36 @@
 		<title>Gmail angular demo</title>
 		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
 		<link rel="stylesheet" href="css/app.css">
+		<link rel="stylesheet" href="css/sprites.css">
 	</head>
 	<body> 
 			<header class="mainHeader">
-				<span class="mainHeaderTitle">Angular Mail</span> <input  class="mainSearchBox" ng-model="searchQuery" type="search"
-        placeholder="Search by" autofocus/>
+				<div class="mainHeaderTitle">Angular Mail</div> 
+				<div class="mainSearchBox">
+					<input   ng-model="searchQuery" type="search" placeholder="Search" autofocus/>
+					<div class="icn search" style="float:right;"></div>
+				</div>
 			</header>
 			<div class="mainContent" ng-controller='MessageListCtrl'>
 				<div class="resultsPanel">
-					<div ng-repeat="message in messages | filter:searchQuery" class="row">
-						<messages-list-item  message="message" ng-class="{selected: message.id === selectedMessage.id}"  ng-click="selectMessage(message)"></messages-list-item>
+					<div ng-repeat="message in messages | filter:searchQuery" ng-class="{selected: message.id === selectedMessage.id}"  class="row">
+						<messages-list-item  message="message"  ng-click="selectMessage(message)"></messages-list-item>
 					</div>
 				</div>
-				<div class="detailPanel"  ng-view></div>
+				<div class="detailPanel" >
+					<div ng-if="hasSelectedMessage()">
+						{{selectedMessage.subject}}
+					</div>
+					<div ng-if="!hasSelectedMessage()">
+						<div class="jumbotron" style="padding-top: 0px;">
+							<h1>Welcome to AngularMail</h1>
+							<ul class="bulletList">
+								<li>Search through your messages</li>
+								<li>Select any row to see the full message</li>
+							</ul>
+					</div>
+					</div>
+				</div>
 				
 			</div>
 		

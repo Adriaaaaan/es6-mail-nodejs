@@ -9,7 +9,10 @@ appControllers.controller('MessageListCtrl',['$scope','Messages','$location',fun
 	$scope.messages = Messages.all.query();
 	$scope.selectMessage = function(message){
 		$scope.selectedMessage=message;
-	}
+	};
+	$scope.hasSelectedMessage = function(){
+		return $scope.selectedMessage!==undefined || $scope.selectedMessage!=null
+	};
 }]);
 
 appControllers.controller('MessageViewCtrl',['$scope', '$routeParams','Messages',function($scope,$routeParams,Messages){
