@@ -12,5 +12,5 @@ appServices.factory('Messages', ['$resource',
 	  byId:$resource('rest/messages/:id', {}, {
 		query: {method:'GET', isArray:false}
 	  })
-  }
+  };
   }]);

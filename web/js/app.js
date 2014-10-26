@@ -5,7 +5,8 @@
 var app = angular.module('app', [
   'ngRoute',
   'appServices',
-  'appControllers']);
+  'appControllers',
+  'appDirectives']);
 
 app.config(['$routeProvider',function($routeProvider){
 	$routeProvider.when('/message/:messagesId',{
