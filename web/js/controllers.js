@@ -5,8 +5,11 @@
 var appControllers = angular.module('appControllers',[]);
 
 
-appControllers.controller('MessageListCtrl',['$scope','Messages',function($scope,Messages){
+appControllers.controller('MessageListCtrl',['$scope','Messages','$location',function($scope,Messages){
 	$scope.messages = Messages.all.query();
+	$scope.selectMessage = function(message){
+		$scope.selectedMessage=message;
+	}
 }]);
 
 appControllers.controller('MessageViewCtrl',['$scope', '$routeParams','Messages',function($scope,$routeParams,Messages){
