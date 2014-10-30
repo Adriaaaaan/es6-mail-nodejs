@@ -18,7 +18,7 @@
 			<div class="mainContent" ng-controller='MessageListCtrl'>
 				<div class="resultsPanel">
 					<div ng-repeat="message in messages | filter:searchQuery" ng-class="{selected: message.id === selectedMessage.id}"  class="row">
-						<a href="#/message/{{message.id}}">
+						<a href="#/message/{{message._id.$oid}}">
 							<messages-list-item  message="message"  ng-click="selectMessage(message)"></messages-list-item>
 						</a>
 					</div>
