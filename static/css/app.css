@@ -310,6 +310,14 @@ html, body {
 	background: rgba(30, 93, 178, 0.27);
 }
 
+input.ng-invalid {
+	border: solid 1px red;
+}
+
+textarea.ng-invalid {
+	border: solid 1px red;
+}
+
 .transitions {
 	-ms-transition:  transform 0.3s ease;
 	-moz-transition:  transform 0.3s ease; 

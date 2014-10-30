@@ -10,23 +10,25 @@
 		<link rel="stylesheet" href="css/tablet.css">
 		<link rel="stylesheet" href="css/phone.css">
 	</head>
-	<body> 
+	<body ng-controller='MessageListCtrl'> 
 			<header class="mainHeader">
 				<div class="mainHeaderTitle">Angular Mail</div> 
 				<div class="mainSearchBox">
 					<input   ng-model="searchQuery" type="search" placeholder="Search" autofocus/>
 					<div class="icn search" style="float:right;"></div>
 				</div>
+				<div ng-click="newMessage()" style="cursor:pointer;float:right;height: 48px;line-height: 48px;">
+					<div class="icn white_new" style="float: left;line-height: 48px;margin: 8px;"></div>
+					<div style="overflow: hidden;color:white;">New Message</div>		
+				</div>
 			</header>
-			<div class="mainContent" ng-controller='MessageListCtrl'>
+			<div class="mainContent" >
 				<div class="resultsPanel transitions">
-					<div ng-repeat="message in messages | filter:searchQuery" ng-class="{selected: message.id === selectedMessage.id}"  class="row">
-						<a href="#/message/{{message._id.$oid}}">
+					<div ng-repeat="message in messages | filter:searchQuery" ng-class="{selected: message._id.$oid === selectedMessageId}"  class="row">
 							<messages-list-item  message="message"  ng-click="selectMessage(message)"></messages-list-item>
-						</a>
 					</div>
 				</div>
-				<div class="detailPanel transitions" ng-class="selectedMessage.id ? 'detailPanelActive' : detailPanelInactive" >
+				<div class="detailPanel transitions" ng-class="showDetailPanel ? 'detailPanelActive' : ''" >
 					<div ng-view class="message-card-container"></div>
 				</div>
 				
