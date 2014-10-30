@@ -8,7 +8,8 @@ appDirectives.directive('messagesListItem',function(){
 		restrict: 'E',
 		templateUrl:'partials/messages-list-item.html',
 		scope: {
-			message: '=message'
+			message: '=message',
+			unselectMessage: '='
 		}
 	};
 });
