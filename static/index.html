@@ -1,47 +1,49 @@
 <!doctype html>
 <html lang="en" ng-app="app">
-	<head>
-		<meta charset="utf-8">
-		<title>Gmail angular demo</title>
-		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-		<link rel="stylesheet" href="css/app.css">
-		<link rel="stylesheet" href="css/sprites.css">
-		<link rel="stylesheet" href="css/medium.css">
-		<link rel="stylesheet" href="css/tablet.css">
-		<link rel="stylesheet" href="css/phone.css">
-	</head>
-	<body ng-controller='MessageListCtrl'> 
-			<header class="mainHeader">
-				<div class="mainHeaderTitle">Angular Mail</div> 
-				<div class="mainSearchBox">
-					<input   ng-model="searchQuery" type="search" placeholder="Search" autofocus/>
-					<div class="icn search" style="float:right;"></div>
-				</div>
-				<div ng-click="newMessage()" style="cursor:pointer;float:right;height: 48px;line-height: 48px;">
-					<div class="icn white_new" style="float: left;line-height: 48px;margin: 8px;"></div>
-					<div style="overflow: hidden;color:white;">New Message</div>		
-				</div>
-			</header>
-			<div class="mainContent" >
-				<div class="resultsPanel transitions">
-					<div ng-repeat="message in messages | filter:searchQuery" ng-class="{selected: message._id.$oid === selectedMessageId}"  class="row">
-							<messages-list-item  message="message"  ng-click="selectMessage(message)"></messages-list-item>
-					</div>
-				</div>
-				<div class="detailPanel transitions" ng-class="showDetailPanel ? 'detailPanelActive' : ''" >
-					<div ng-view class="message-card-container"></div>
-				</div>
-				
-			</div>
-		
-		<script src="bower_components/rsvp/rsvp.js"></script>
-		<script src="bower_components/angular/angular.js"></script>
-		<script src="bower_components/angular-route/angular-route.js"></script>
-		<script src="bower_components/angular-resource/angular-resource.js"></script>
-		<script src="js/app.js"></script>
-		<script src="js/controllers.js"></script>
-		<script src="js/filters.js"></script>
-		<script src="js/services.js"></script>
-		<script src="js/directives.js"></script>
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <title>Gmail angular demo</title>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/sprites.css">
+        <link rel="stylesheet" href="css/medium.css">
+        <link rel="stylesheet" href="css/tablet.css">
+        <link rel="stylesheet" href="css/phone.css">
+    </head>
+    <body ng-controller='MessageListCtrl'> 
+        <header class="mainHeader">
+            <div class="mainHeaderTitle">Angular Mail</div>
+            <div ng-click="newMessage()" class="mainHeaderAction">
+                <div class="primaryAction"><div class="icn white_new" style="float: left;margin: 6px;"></div></div>
+                <div class="hideForPhone" style="overflow: hidden;color:white;">New Message</div>		
+            </div>
+            <div style="padding:4px;overflow:hidden;">
+                <div class="mainSearchBox">
+                    <input   ng-model="searchQuery" type="search" placeholder="Search" autofocus/>
+                    <div class="icn search" style="float:right;"></div>
+                </div>
+            </div>
+        </header>
+        <div class="mainContent" >
+            <div class="resultsPanel transitions">
+                <div ng-repeat="message in messages| filter:searchQuery | orderBy: 'received':true" ng-class="{selected: message._id.$oid === selectedMessageId}"  class="row">
+                    <messages-list-item  message="message"  ng-click="selectMessage(message)"></messages-list-item>
+                </div>
+            </div>
+            <div class="detailPanel transitions" ng-class="showDetailPanel ? 'detailPanelActive' : ''" >
+                <div ng-view class="message-card-container"></div>
+            </div>
+
+        </div>
+
+        <script src="bower_components/rsvp/rsvp.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers.js"></script>
+        <script src="js/filters.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/directives.js"></script>
+    </body>
 </html>

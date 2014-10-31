@@ -6,14 +6,14 @@ var appServices = angular.module('appServices',['ngResource']);
 appServices.factory('Messages', ['$resource','$http',
   function($resource,$http){
     return {
-		all:$resource('rest/messages', {}, {
-		query: {method:'GET', isArray:true}
-	  }),
-	  byId:$resource('rest/messages/:id', {}, {
-		query: {method:'GET', isArray:false}
-	  }),
+	  all:function() {
+		return $http.get('/rest/messages');
+	  },
+	  byId:function(id) {
+		  return $http.get('/rest/messages/'+id);
+	  },
 	  sendMessage:function(message) {
-		  return $http.post('/rest/messages/send', message);
+		  return $http.post('/rest/messages', message);
 	  }
   };
   }]);
