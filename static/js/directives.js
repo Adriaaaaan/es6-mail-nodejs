@@ -9,7 +9,9 @@ appDirectives.directive('messagesListItem',function(){
 		templateUrl:'partials/messages-list-item.html',
 		scope: {
 			message: '=message',
-			unselectMessage: '='
+			unselectMessage: '=',
+			delete: '&',
+			select: '&'
 		}
 	};
 });

@@ -26,14 +26,25 @@ def messages():
         return getMessages()
     
 
-@app.route('/rest/messages/<id>')
+@app.route('/rest/messages/<id>', methods=['GET', 'DELETE'])
+def message(id):
+    if request.method == 'GET':
+        return getMessage(id)
+    elif request.method == 'DELETE':
+        return deleteMessage(id)
+
 def getMessage(id):
     result = db.messages.find_one({'_id': ObjectId(id)})
+    return toJson(result)
+
+def deleteMessage(id):
+    result = db.messages.remove({'_id': ObjectId(id)})
     return toJson(result)
 
 def addMessage(post):
     id = db.messages.insert(post)
     response = jsonify()
+    response.data = toJson(id)
     response.status_code = 201
     response.autocorrect_location_header = False
     return response

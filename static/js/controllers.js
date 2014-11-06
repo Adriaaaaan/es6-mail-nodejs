@@ -4,55 +4,60 @@
 
 var appControllers = angular.module('appControllers', []);
 
-
-appControllers.controller('MessageListCtrl', ['$scope', 'Messages', '$location', '$routeParams', function ($scope, Messages, $location, $routeParams) {
-       
-        
+appControllers.controller('MessageListCtrl', function ($scope, Messages, $state) {  
         Messages.all().success(function(response){
-           $scope.messages=response;
-          
+           $scope.messages=response;   
         });
+
         $scope.selectMessage = function (message) {
+			$state.go('messages.detail',{id:message._id.$oid,dp:true});
             $scope.selectedMessageId = message._id.$oid;
-            $location.path('/message/' + message._id.$oid).search('dp', 'true');
+			$scope.showDetailPanel = true;
         };
+		
+		$scope.deleteMessage = function (message) {
+			Messages.deleteMessage(message._id.$oid).success(function(){
+				var index = $scope.messages.indexOf(message)
+				$scope.messages.splice(index, 1);
+			});
+        };
+
         $scope.hasSelectedMessage = function () {
             return $scope.selectedMessageId !== undefined || $scope.selectedMessageId !== null;
         };
-        $scope.showDetailPanel = false;
 
+        $scope.selectedMessageId=$state.params.id;
+		$scope.showDetailPanel = $state.params.dp;
+		
         $scope.newMessage = function () {
-            $location.path('/newMessage').search('dp', true);
+            $state.go('messages.new');
         };
 
         $scope.unselectMessage = function () {
-            $location.path('/index.html').search('dp', false);
+            $state.go('messages.index',{dp:false});
+			$scope.showDetailPanel = false;
         };
-        $scope.$on('$routeChangeStart', function (angularEvent, next, current) {
-            $scope.showDetailPanel = next.params.dp || false;
-            $scope.selectedMessageId = next.pathParams.id;
-        });
-    }]);
+    });
 
-appControllers.controller('MessageViewCtrl', ['$scope', '$routeParams', 'Messages', function ($scope, $routeParams, Messages) {
-        Messages.byId($routeParams.id).success(function(message){
+	appControllers.controller('MessageViewCtrl', function ($scope, $stateParams, Messages) {
+        Messages.byId($stateParams.id).success(function(message){
             $scope.message = message;
+			$scope.message.selected=true;
         });
-    }]);
+    });
 
-appControllers.controller('SendNewMessageCtrl', ['$scope', 'Messages','$route', '$location','$window', function ($scope, Messages,$route, $location,$window) {
+appControllers.controller('SendNewMessageCtrl', function ($scope, Messages,$state) {
         $scope.sendMessage = function (message) {
             message.received = Date.now();
             message.avatar = "img/person3.jpg";
             Messages.sendMessage(message)
-                    .success(function () {
-                        $location.path('/').search('dp', false).search();
-                        //MessageListCtrl isn't managed by router so it wont reload the data
-                        //using a different routing library would be better (for nested routes)
-                        $window.location.reload(); 
-                    }
-                ).error(function (error) {
-            }
+				.success(function (message) {
+					$state.go('messages.detail', {id: message.$oid, dp: true}, {
+						reload: true,
+						inherit: false,
+						notify: true
+					});
+				}
             );
         };
-    }]);
+    });
