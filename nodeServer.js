@@ -32,7 +32,7 @@ app.get('/rest/messages/:id',function(req,res){
 app.delete('/rest/messages/:id',function(req,res){
     return db.messages.remove({_id:toObjectID(req.params.id)}, function (err, product) {
 		if (!err) {
-		  return res.send(product);
+		  return res.sendStatus(200);
 		} else {
 		  return console.log(err);
 		}
