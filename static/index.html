@@ -9,8 +9,14 @@
         <link rel="stylesheet" href="css/medium.css">
         <link rel="stylesheet" href="css/tablet.css">
         <link rel="stylesheet" href="css/phone.css">
+		<script data-main="scripts/main" src="bower_components/socket.io-client/socket.io.js"></script>
     </head>
     <body >
+		<script>
+			var socket = io();
+			
+			socket.emit('chat message', "hello node");
+		</script>
         <div ui-view style="height:100%;"></div>
 
         <script src="bower_components/rsvp/rsvp.js"></script>

@@ -10,13 +10,13 @@ appControllers.controller('MessageListCtrl', function ($scope, Messages, $state)
         });
 
         $scope.selectMessage = function (message) {
-			$state.go('messages.detail',{id:message._id.$oid,dp:true});
-            $scope.selectedMessageId = message._id.$oid;
+			$state.go('messages.detail',{id:message._id,dp:true});
+            $scope.selectedMessageId = message._id;
 			$scope.showDetailPanel = true;
         };
 		
 		$scope.deleteMessage = function (message) {
-			Messages.deleteMessage(message._id.$oid).success(function(){
+			Messages.deleteMessage(message._id).success(function(){
 				var index = $scope.messages.indexOf(message)
 				$scope.messages.splice(index, 1);
 			});
@@ -52,7 +52,7 @@ appControllers.controller('SendNewMessageCtrl', function ($scope, Messages,$stat
             message.avatar = "img/person3.jpg";
             Messages.sendMessage(message)
 				.success(function (message) {
-					$state.go('messages.detail', {id: message.$oid, dp: true}, {
+					$state.go('messages.detail', {id: message, dp: true}, {
 						reload: true,
 						inherit: false,
 						notify: true

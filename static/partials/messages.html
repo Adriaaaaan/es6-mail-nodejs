@@ -13,7 +13,7 @@
 </header>
 <div class="mainContent" >
 	<div class="resultsPanel transitions">
-		<div ng-repeat="message in messages | filter:searchQuery | orderBy: 'received':true" ng-class="{selected: message._id.$oid === selectedMessageId}"  class="row">
+		<div ng-repeat="message in messages | filter:searchQuery | orderBy: 'received':true" ng-class="{selected: message._id === selectedMessageId}"  class="row">
 			<messages-list-item  message="message"  select="selectMessage(message)" delete="deleteMessage(message)"></messages-list-item>
 		</div>
 	</div>
