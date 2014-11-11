@@ -26,3 +26,10 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+/web/bower_components/
+/nbproject/
+/node_modules/
+/env/
+/static/nbproject/private/
+/static/nbproject/
+/static/bower_components/

@@ -1,0 +1,5 @@
+@media (max-width: 599px) {
+    .hideForPhone {
+        display:none;
+    }
+}
