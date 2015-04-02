@@ -52,7 +52,8 @@ appControllers.controller('SendNewMessageCtrl', function ($scope, Messages,$stat
             message.avatar = "img/person3.jpg";
             Messages.sendMessage(message)
 				.success(function (message) {
-					$state.go('messages.detail', {id: message, dp: true}, {
+				  debugger
+					$state.go('messages.detail', {id: message._id, dp: true}, {
 						reload: true,
 						inherit: false,
 						notify: true
