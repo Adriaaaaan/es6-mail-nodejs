@@ -6,13 +6,15 @@ ECMASCRIPT 2015 with a nodejs backend
 A simple demo written in pure javascript (es6) and nodejs.
 
 Demonstrates:
-* homemade "framework" with no 3rd part dependencies (outside of polyfills) including the use of
+* homemade "framework" with no 3rd party dependencies (outside of polyfills) including the use of
   * modules 
   * routing
   * http ajax
   * promises
   * templating
+  
 * html5 and css3 used for styling and layout
+
 * supports any screensize
 
 * nodejs backend backed by mongodb
