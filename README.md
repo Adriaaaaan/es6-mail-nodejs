@@ -1,4 +1,4 @@
-angular-mail-nodejs
+es6-mail-nodejs
 ===================
 
 ECMASCRIPT 2015 with a nodejs backend
