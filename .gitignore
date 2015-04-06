@@ -34,3 +34,4 @@ node_modules
 /static/nbproject/
 /static/bower_components/
 .idea
+jspm_packages/
