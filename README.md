@@ -1,7 +1,7 @@
 angular-mail-nodejs
 ===================
 
-angular-mail with a nodejs backend
+ECMASCRIPT 2015 with a nodejs backend
 
 A simple demo written in angular js and nodejs.
 
