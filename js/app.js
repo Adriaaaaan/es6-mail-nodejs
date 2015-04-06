@@ -1,39 +1,46 @@
-'use strict';
+import router from './core/router';
+import {View,Cntrl} from './core/framework';
+import {messagesView} from './messages'
+import appTemplate from './templates/mainLayout';
 
-/* App Module */
+var routes = {};
+var currentRoutes=[];
 
-var app = angular.module('app', [
-  'ui.router',
-  'appServices',
-  'appControllers',
-  'appDirectives']);
+class App extends Cntrl {
 
+	setupRoutes(){
+		this.routes = {
+			messages:messagesView,
+			index:messagesView
+		}
+		var routes = router();
+		try {
+			this.transitionTo(routes);
+		} catch(err){
+			if(document.location.hash!=="/index") {
+				document.location.hash="/index";
+			}
+		}
+	}
 
-app.config(['$stateProvider',function($stateProvider){
-	$stateProvider
-		.state('messages', {
-		  url: "/messages",
-		  abstract:true,
-		  templateUrl: "partials/messages.html",
-		  controller:'MessageListCtrl'
-		}).state('messages.detail',{
-			parent:'messages',
-			url:'/view/:id?dp',
-			templateUrl:'partials/messages-view.html',
-			controller: 'MessageViewCtrl'
-		}).state('messages.index',{
-			parent:'messages',
-			url:'',
-			templateUrl:'partials/messages-welcome.html'
-		}).state('messages.new',{
-			parent:'messages',
-			url:'/newMessage?dp',
-			templateUrl:'partials/messages-new.html',
-			controller: 'SendNewMessageCtrl'
+	setupEvents(){
+		var body = document.querySelector('body');
+		document.addEventListener('click',(event) => {
+			console.log(`event received from ${event.srcElement.id}`)
 		});
-}]);
+		window.addEventListener('hashchange',(event) => {
+			this.setupRoutes();
+		});
+	}
+}
 
-app.run(['$state', function ($state) {
-   $state.transitionTo('messages.index');
-}])
+class AppView extends View {}
 
+var appController = new App();
+var appView = new AppView('body',appController,appTemplate);
+appView.render();
+appController.setupEvents();
+appController.setupRoutes();
+
+
+export default {Main:appController}

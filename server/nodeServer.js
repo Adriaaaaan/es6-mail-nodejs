@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var messagesApi = require('./serverJs/messages');
 var websocketEvents = require('./serverJs/websocketEvents');
 
-app.use(express.static(__dirname + '/static'));
+app.use(express.static('../'));
 app.use( bodyParser.json() );      
 app.use(bodyParser.urlencoded({    
   extended: true
