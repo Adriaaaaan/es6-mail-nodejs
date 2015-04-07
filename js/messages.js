@@ -34,6 +34,11 @@ class MessagesController extends Cntrl {
     fetchModel(){
         return messageService.all();
     }
+
+    lookupDynamicRoute(){
+        return "selectedMessage";
+    }
+
 };
 
 export var messagesController = new MessagesController();

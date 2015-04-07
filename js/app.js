@@ -1,6 +1,7 @@
 import router from './core/router';
 import {View,Cntrl} from './core/framework';
 import {messagesView} from './messages'
+import {selectedMessageView} from './selectedMessage'
 import appTemplate from './templates/mainLayout';
 
 var routes = {};
@@ -11,12 +12,14 @@ class App extends Cntrl {
 	setupRoutes(){
 		this.routes = {
 			messages:messagesView,
+			selectedMessage:selectedMessageView,
 			index:messagesView
 		}
-		var routes = router();
+		var currentRoute = router();
 		try {
-			this.transitionTo(routes);
+			this.transitionTo(currentRoute,this.routes);
 		} catch(err){
+			debugger
 			if(document.location.hash!=="/index") {
 				document.location.hash="/index";
 			}

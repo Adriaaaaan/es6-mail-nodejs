@@ -1,6 +1,6 @@
 import html from '../core/templates';
 
-export default (model)  => html`${model.map((message) => html`
+export default (model)  => html`${model.map((message) => html`<a href='#/messages/${message._id}'>
 	<div class="messageListItem row" ng-click="focusRow(message)" style="cursor: pointer;">
 		<div class='selectorColumn' ng-click="select(message)">
 			<div class="selectionCircle" >&nbsp;</div>
@@ -21,5 +21,5 @@ export default (model)  => html`${model.map((message) => html`
 			</div>
 		</div>
 
-	</div>
+	</div></a>
 `)}`

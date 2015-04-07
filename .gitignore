@@ -35,3 +35,6 @@ node_modules
 /static/bower_components/
 .idea
 jspm_packages/
+dist/
+build.js
+build.js.map

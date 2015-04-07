@@ -16,6 +16,15 @@ export class View {
         this.renderTemplate(model);
         this.afterRender();
     }
+
+    transitionTo(currentRoutes,routeParam,routeMap){
+        console.log("transitioned to "+this.renderTo);
+        this.controller.fetch(routeParam).then(() => {
+            this.render();
+            this.controller.transitionTo(currentRoutes,routeMap);
+        });
+    }
+
     afterRender(){}
     renderTemplate(model){
         let selector = this.renderTo;
@@ -25,31 +34,36 @@ export class View {
 }
 
 export class Cntrl {
-    constructor(){
-        this.fetch();
-    }
     fetchModel(){
         return {
-            then(){}
+            then(callback){
+                callback();
+            }
         }
     }
     onModelChange(){}
-    fetch(){
-        this.fetchModel().then((model)=>{
+    fetch(routeParam){
+        return this.fetchModel(routeParam).then((model)=>{
             this.model=model;
             this.onModelChange();
         });
     }
 
-    transitionTo(routes){
+    transitionTo(currentRoutes,routeMap){
         //is transition complete
-        if(routes.length===0)
+        if(currentRoutes.route.length===0)
             return;
-        var routeName = routes.shift();
-        var route = this.routes[routeName];
+        var routeName = currentRoutes.route.shift();
+        var routeParam;
+        var route =null;
+        if(this.lookupDynamicRoute) {
+            routeParam = routeName;
+            routeName = this.lookupDynamicRoute();
+        }
+        var route = routeMap[routeName];
         if(route===undefined)
             throw new Error(`Route not found ${routeName}`);
         //render route and continue transition
-        route.transitionTo(routes);
+        route.transitionTo(currentRoutes,routeParam,routeMap);
     }
 }

@@ -20,5 +20,7 @@ export default ()  => html`<header class="mainHeader">
 <section id="mainLayoutPanel" class="mainContent" >
 	<aside id="filterPanel"></aside>
 	<section id="mainContent" class="resultsPanel transitions"></section>
-	<article id="detailPanel" class="detailPanel transitions"></article>
+	<article id="detailPanel" class="detailPanel transitions">
+		<div id="detailContent" class="message-card-container"></div>
+	</article>
 </section>`
