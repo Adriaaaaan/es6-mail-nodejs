@@ -1,4 +1,4 @@
-import html from '../core/templates';
+import html from '../core/templates.js';
 
 export default (message)  => html`<article class="message-card">
 	<header class="message-header">

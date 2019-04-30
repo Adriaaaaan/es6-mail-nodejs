@@ -1,8 +1,8 @@
-import router from './core/router';
-import {View,Cntrl} from './core/framework';
-import {messagesView} from './messages'
-import {selectedMessageView} from './selectedMessage'
-import appTemplate from './templates/mainLayout';
+import router from './core/router.js';
+import {View,Cntrl} from './core/framework.js';
+import {messagesView} from './messages.js';
+import {selectedMessageView} from './selectedMessage.js';
+import appTemplate from './templates/mainLayout.js';
 
 var routes = {};
 var currentRoutes=[];
@@ -18,8 +18,8 @@ class App extends Cntrl {
 		var currentRoute = router();
 		try {
 			this.transitionTo(currentRoute,this.routes);
-		} catch(err){
-			debugger
+		} catch(err) {
+			
 			if(document.location.hash!=="/index") {
 				document.location.hash="/index";
 			}

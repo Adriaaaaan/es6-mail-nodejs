@@ -1,4 +1,4 @@
-import html from '../core/templates';
+import html from '../core/templates.js';
 
 export default ()  => html`<header class="mainHeader">
 	<div class="mainHeaderTitle">ES6 Mail</div>

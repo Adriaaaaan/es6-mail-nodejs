@@ -1,4 +1,4 @@
-import html from '../core/templates';
+import html from '../core/templates.js';
 
 export default (model)  => html`${model.map((message) => html`<a href='#/messages/${message._id}'>
 	<div class="messageListItem row" ng-click="focusRow(message)" style="cursor: pointer;">

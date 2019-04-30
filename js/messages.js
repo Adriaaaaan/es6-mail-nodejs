@@ -1,6 +1,6 @@
-import {View,Cntrl} from './core/framework';
-import messageService from './messageService';
-import messagesTemplate from './templates/messages';
+import {View,Cntrl} from './core/framework.js';
+import messageService from './messageService.js';
+import messagesTemplate from './templates/messages.js';
 
 class MessagesView extends View {
 
